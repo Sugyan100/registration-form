@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registration Form</title>
+
+    <style>
+        button{
+            background-color: blue;
+            border: 2px dashed red;
+            font-size: x-large;
+            font-family: 'Times New Roman', Times, serif;
+            color: aliceblue;
+        }
+        #trms-label{
+            text-decoration: underline red;
+        }
+        input, select {
+            margin: 5px 0;
+            padding: 5px;
+        }
+        input[type="checkbox"]:disabled + label {
+            color: gray;
+        }
+        button:disabled {
+            background-color: gray;
+            cursor: not-allowed;
+        }
+        /* Hover effect for inputs */
+        input:hover, select:hover {
+            border-color: blue;
+        }
+    </style>
+
+    <script>
+        function enableCheckbox() {
+            document.getElementById('trms').disabled = false;
+        }
+
+        function enableSubmit() {
+            const checkbox = document.getElementById('trms');
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = !checkbox.checked;
+        }
+
+        function calculateAge() {
+            const birthdate = new Date(document.getElementById('birthdate').value);
+            const today = new Date();
+            const age = today.getFullYear() - birthdate.getFullYear();
+            document.getElementById('age').value = age > 0 ? age : ''; // Calculate age and update
+        }
+    </script>
+</head>
+<body>
+
+    <form method="get">
+
+        <fieldset>
+            <legend>User Info</legend>
+            <label for="fnme">Full Name:</label><br>
+            <input type="text" name="fnme" id="fnme" placeholder="Enter your full name" required><br><br>
+
+            <label for="add">Address:</label>
+            <input type="text" name="add" id="add" placeholder="Enter your address"><br><br>
+
+            <label for="birthdate">Date of Birth:</label>
+            <input type="date" id="birthdate" onchange="calculateAge()"><br><br>
+
+            <label for="age">Age:</label>
+            <input type="number" name="age" id="age" readonly><br><br>
+
+            <label>Gender:</label><br>
+            <input type="radio" name="gender" id="radM">
+            <label for="radM">Male</label>
+
+            <input type="radio" name="gender" id="radF">
+            <label for="radF">Female</label>
+
+            <input type="radio" name="gender" id="radO">
+            <label for="radO">Others</label><br><br>
+
+            <label for="country">Country:</label>
+            <select name="country" id="country">
+                <option value="country1">Nepal</option>
+                <option value="country2">India</option>
+                <option value="country3">China</option>
+                <option value="country4">Dubai</option>
+                <option value="country5">USA</option>
+            </select>
+        </fieldset>
+
+        <fieldset>
+            <legend>Web Designing</legend>
+
+            <label>Courses:</label><br><br>
+            <input type="checkbox" name="c1" id="c1">
+            <label for="c1">HTML</label><br>
+
+            <input type="checkbox" name="c2" id="c2">
+            <label for="c2">CSS</label><br>
+
+            <input type="checkbox" name="c3" id="c3">
+            <label for="c3">Javascript</label><br><br>
+        </fieldset><br>
+
+        <a href="https://synapseworldwide.com/" target="_blank" onclick="enableCheckbox()">Click here to read about our terms and conditions</a><br>
+
+        <input type="checkbox" name="trms" id="trms" disabled onchange="enableSubmit()">
+        <label for="trms" id="trms-label"> I hereby accept the terms and conditions</label><br><br>
+
+        <button type="submit" id="submitBtn" disabled>Submit</button>
+    </form>
+</body>
+</html>
